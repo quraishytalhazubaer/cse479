@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+  <title>Comment Page</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Blog Site</a>
+    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/homepage">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>{{post['title']}}</h1>
+    <p>By {{post['user'].first_name}} {{post['user'].last_name}}</p>
+    <p>Posted on {{post['date_time']}}</p>
+    <hr>
+
+    <br>
+
+    <img src="{{post['image_path']}}" alt="...">
+    <p>{{post['description']}}</p>
+    <hr>
+    <h2>Comments</h2>
+<form action="/post/{{post['_id']}}" method="post">
+<div class="form-group">
+<label for="comment-description">Comment</label>
+<textarea class="form-control" name="comment" id="comment-description" rows="3"></textarea>
+</div>
+<button class="btn btn-primary" type="submit">Post Comment</button>
+</form>
+<hr>
+  </div>
+  <div class="container">
+    <h1>Comments</h1>
+    <hr>
+    {% for comment in comments %}
+    <div class="card" id="comment-1">
+      <div class="card-body">
+        <h5 class="card-title">{{comment['user'].first_name}} {{comment['user'].last_name}}</h5>
+        <p class="card-text">{{comment['text']}}</p>
+        <p class="card-text"><small class="text-muted">{{comment['date']}}</small></p>
+
+</div>
+</div>
+    {% endfor %}
+</div>
+</div>
+  </div>
+  <script crossorigin="anonymous" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script crossorigin="anonymous" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script crossorigin="anonymous" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+```

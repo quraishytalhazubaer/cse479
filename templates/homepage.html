@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>Blog Site</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">E-Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/homepage">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/create">Create</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+    <form action="/search" method="get">
+  <input type="text" name="query">
+  <button type="submit">Search</button>
+</form>
+
+  </nav>
+
+  <div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <h1>Recent Posts</h1>
+      <hr>
+      <div class=".post">
+      {% for post in posts %}
+        <div class="row-md-4">
+          <div class="card">
+
+            <img src="{{post['image_path']}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title">{{post['title']}}</h4>
+              <p class="card-author">Posted By:{{post['user'].first_name}} {{post['user'].last_name}}</p>
+              <form action="/post/post[_id]">
+                <a href="/post/{{post['_id']}}" class="btn btn-primary" >Read More</a>
+              </form>
+              <p class="card-text"><small class="text-muted">
+                Tags:
+                {% for tag in post['tags'] %}
+                {{tag}}
+                {% endfor %}
+              </small></p>
+              <p class="card-text"><small class="text-muted">Date & time:{{post['date_time']}}</small></p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+        </div>
+
+</div>
+<div class="col-md-2">
+<h1>Filter</h1>
+<hr>
+  <form method="get">
+<div class="form-group">
+<select class="form-control" name="tag" id="tag">
+    <option value="all">All</option>
+    <option value="education">education</option>
+    <option value="technology">technology</option>
+    <option value="science">science</option>
+</select>
+  <button type="submit">Filter</button>
+</div>
+  </form>
+</div>
+  </div>
+</div>
+  <footer style="  position: absolute; bottom: 0; width: 100%; height: 2.5rem;" class="footer">
+    <div class="container">
+      <span class="text-muted">Copyright &copy; Blog Site 2023</span>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W7MGGAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script>
+
+  </script>
+</body>
+</html>

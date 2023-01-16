@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <body class="d-flex flex-column min-vh-100">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <i class="fa-solid fa-graduation-cap fa-lg"></i> Student Management System
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">
+                  <i class="fa-solid fa-list fa-lg"></i> All Students
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/add/">
+                  <i class="fa-solid fa-plus fa-lg"></i> Add Student
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid">
+
+<h3 class="m-4">All Students</h3>
+<div class="row">
+  <div class="col-12">
+
+    <div class="card bg-light ms-4 me-4 mb-4">
+      <div class="card-header">
+        <i class="fa-solid fa-list fa-lg"></i> Student Records
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Student Number</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Field of Study</th>
+                  <th scope="col">GPA</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                  <tr>
+                    <td>2019160116</td>
+                    <td>Talha</td>
+                    <td>Zubaer</td>
+                    <td>talha@gmail.com</td>
+                    <td>Dept of CSE</td>
+                    <td>4.0</td>
+                    <td>
+                      <button type="button" class="btn btn-success me-1" href="/2" data-bs-toggle="modal" data-bs-target="#myModal2">
+                        <i class="fa-solid fa-circle-info fa-lg"></i>
+                      </button>
+
+                      <!-- Modal - View Student -->
+                      <div class="modal" id="myModal2" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">
+                                Student: Talha Zubaer
+                              </h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <ul class="list-unstyled">
+                                <li>Student Number: <strong>2019160116</strong></li>
+                                <li>First Name: <strong>Talha</strong></li>
+                                <li>Last Name: <strong>Zubaer</strong></li>
+                                <li>Email: <strong>talha@gmail.com</strong></li>
+                                <li>Field of Study: <strong>Dept of CSE</strong></li>
+                                <li>GPA: <strong>4.0</strong></li>
+                              </ul>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <a class="btn btn-warning me-1" href="/edit/2/">
+                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                      </a>
+
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete2">
+                        <i class="fa-solid fa-trash-can fa-lg"></i>
+                      </button>
+
+                      <!-- Modal - Delete Student -->
+                      <div class="modal" id="delete2" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">
+                                Student: Talha Zubaer
+                              </h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Are you sure you want to delete this student?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <form action="/delete/2/" method="POST">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="yEa7Ps1aqHWDSyFGwcd33Q42IL6OisO7PCwhI75K6ENnoxET4PIOKFUxR93aMBOD">
+                                <input type="submit" class="btn btn-primary" value="Delete">
+                              </form>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>2125145</td>
+                    <td>Arifin</td>
+                    <td>Shuvo</td>
+                    <td>Arifin@gmail.com</td>
+                    <td>CSE</td>
+                    <td>4.0</td>
+                    <td>
+                      <button type="button" class="btn btn-success me-1" href="/3" data-bs-toggle="modal" data-bs-target="#myModal3">
+                        <i class="fa-solid fa-circle-info fa-lg"></i>
+                      </button>
+
+                      <!-- Modal - View Student -->
+                      <div class="modal" id="myModal3" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">
+                                Student: Arifin Shuvo
+                              </h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <ul class="list-unstyled">
+                                <li>Student Number: <strong>2125145</strong></li>
+                                <li>First Name: <strong>Arifin</strong></li>
+                                <li>Last Name: <strong>Shuvo</strong></li>
+                                <li>Email: <strong>Arifin@gmail.com</strong></li>
+                                <li>Field of Study: <strong>CSE</strong></li>
+                                <li>GPA: <strong>4.0</strong></li>
+                              </ul>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <a class="btn btn-warning me-1" href="/edit/3/">
+                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                      </a>
+
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete3">
+                        <i class="fa-solid fa-trash-can fa-lg"></i>
+                      </button>
+
+                      <!-- Modal - Delete Student -->
+                      <div class="modal" id="delete3" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">
+                                Student: Arifin Shuvo
+                              </h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Are you sure you want to delete this student?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <form action="/delete/3/" method="POST">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="yEa7Ps1aqHWDSyFGwcd33Q42IL6OisO7PCwhI75K6ENnoxET4PIOKFUxR93aMBOD">
+                                <input type="submit" class="btn btn-primary" value="Delete">
+                              </form>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>2201855</td>
+                    <td>Mahir</td>
+                    <td>Morshed</td>
+                    <td>mahir@gmail.com</td>
+                    <td>Dept of CSE</td>
+                    <td>5.0</td>
+                    <td>
+                      <button type="button" class="btn btn-success me-1" href="/5" data-bs-toggle="modal" data-bs-target="#myModal5">
+                        <i class="fa-solid fa-circle-info fa-lg"></i>
+                      </button>
+
+                      <!-- Modal - View Student -->
+                      <div class="modal" id="myModal5" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">
+                                Student: Mahir Morshed
+                              </h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <ul class="list-unstyled">
+                                <li>Student Number: <strong>2201855</strong></li>
+                                <li>First Name: <strong>Mahir</strong></li>
+                                <li>Last Name: <strong>Morshed</strong></li>
+                                <li>Email: <strong>mahir@gmail.com</strong></li>
+                                <li>Field of Study: <strong>Dept of CSE</strong></li>
+                                <li>GPA: <strong>5.0</strong></li>
+                              </ul>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <a class="btn btn-warning me-1" href="/edit/5/">
+                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                      </a>
+
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete5">
+                        <i class="fa-solid fa-trash-can fa-lg"></i>
+                      </button>
+
+                      <!-- Modal - Delete Student -->
+                      <div class="modal" id="delete5" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">
+                                Student: Mahir Morshed
+                              </h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Are you sure you want to delete this student?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <form action="/delete/5/" method="POST">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="yEa7Ps1aqHWDSyFGwcd33Q42IL6OisO7PCwhI75K6ENnoxET4PIOKFUxR93aMBOD">
+                                <input type="submit" class="btn btn-primary" value="Delete">
+                              </form>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+      </div>
+      <footer class="mt-auto mb-4">
+        <div class="text-center">
+          <span>
+            Copyright &copy; <script>document.write(new Date().getFullYear())</script> Bob's Programming Academy.
+          </span>
+        </div>
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+  </head>
+</html>
