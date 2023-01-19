@@ -114,7 +114,7 @@ def teacher_login():
     if request.method == "POST":
         email = request.form["uname"]
         password = request.form["psw"]
-        print(email)
+
         remember = request.form.get("remember")
         if authenticate(email, password,db_t['teachers']):
             session['email'] = email
@@ -129,9 +129,7 @@ def teacher_login():
 def authenticate(username, password,table):
     user = table.find_one({'email': username})
     if user:
-        print(user)
         if user['password'] == password:
-            print(user)
             return True
     return False
 
@@ -142,7 +140,6 @@ def homepage():
     if "email" in session:
         user = session["email"]
     posts = list(posts_collection.find())
-    print (posts)
     return render_template('homepage.html', **locals())
 
 @app.route('/create', methods=['GET', 'POST'])
@@ -181,7 +178,7 @@ def fav(id):
         user = session["email"]
     data = posts_collection.find_one({"_id": ObjectId(id)})
     data["person"]= user
-    print("visited")
+
     if request.method=="POST":
         favourite_table.insert_one(data)
         return redirect("/")
@@ -192,7 +189,6 @@ def favouritePage():
         user = session["email"]
     list1 = {}
     posts = list(favourite_table.find({"person": user}))
-    print (posts)
     return render_template("favourite.html", **locals())
 
 @app.route('/edit/<string:id>', methods=['GET', "POST"])

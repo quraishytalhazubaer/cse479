@@ -43,8 +43,9 @@
   <input type="text" name="query">
   <button type="submit">Search</button>
 </form>
-
   </nav>
+
+
 
   <div class="container">
   <div class="row">
@@ -72,11 +73,7 @@
 
                 <form action='/fav/{{post["_id"]}}' method="POST">
                     <button class="btn btn-warning me-1 mr-2" type="submit">
-                      {% if fav == True %}
-                      <i class="fa-solid fa-heart"></i>
-                      {% else %}
                       <i class="fa-regular fa-heart"></i>
-                      {% endif %}
                     </button>
                 </form>
 
@@ -126,6 +123,7 @@
   </div>
 </div>
 
+</div>
   </div>
 </div>
   <footer style="  position: relative; bottom: 0; width: 100%; height: 2.5rem;" class="footer">
@@ -143,7 +141,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
           integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
           crossOrigin="anonymous"></script>
-
-  </script>
 </body>
 </html>
