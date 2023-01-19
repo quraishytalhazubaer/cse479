@@ -149,7 +149,7 @@ def create():
             title = request.form['title']
             tags = request.form['tags'].split(',')
             description = request.form['description']
-            referance = request.form['reference'].split('/n')
+            referance = request.form['reference']
             time=datetime.now()
             file = request.files['image']
             if file and allowed_file(file.filename):
