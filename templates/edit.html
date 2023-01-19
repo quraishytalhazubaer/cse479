@@ -15,27 +15,26 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="homepage">Home</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
       </ul>
     </div>
   </nav>
 
   <div class="container">
-    <h1>Create Blog Post</h1>
+    <h1>Edit Blog Post</h1>
     <hr>
     <form method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <label for="post-title">Title</label>
-        <input type="text" class="form-control" name="title" id="post-title" placeholder="Enter Title">
+        <input type="text" class="form-control" name="title" id="post-title" placeholder="{{data['title']}}">
       </div>
       <div class="form-group">
         <label for="post-title">Tag</label>
-        <input type="text" class="form-control" name="tags" id="post-tag" placeholder="Enter Title">
+        <input type="text" class="form-control" name="tags" id="post-tag" placeholder="{{data['tags']}}">
       </div>
       <div class="form-group">
-        <label for="post-image">Image
-</label>
+        <label for="post-image">Image</label>
         <input type="file" class="form-control-file" name="image" id="post-image">
       </div>
       <div class="form-group">
@@ -44,7 +43,7 @@
       </div>
       <div class="form-group">
         <label for="post-reference">Reference</label>
-        <input type="text" class="form-control" name="reference" id="post-reference" placeholder="Enter Reference">
+        <input type="text" class="form-control" name="reference" id="post-reference" placeholder={{data['referance']}}>
       </div>
       <button type="submit" class="btn btn-primary">Create Post</button>
     </form>

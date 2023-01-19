@@ -14,6 +14,7 @@ db_t = client.teachers
 db_s = client.student
 db = client['blog_db']
 posts_collection = db['posts']
+favourite_table = db["mainfavourite"]
 comments_collection = db['comments']
 app.config['UPLOAD_FOLDER'] = 'static/images'
 app.debug = True
@@ -138,8 +139,11 @@ def authenticate(username, password,table):
 
 @app.route('/homepage')
 def homepage():
+    if "email" in session:
+        user = session["email"]
     posts = list(posts_collection.find())
-    return render_template('homepage.html', posts=posts)
+    print (posts)
+    return render_template('homepage.html', **locals())
 
 @app.route('/create', methods=['GET', 'POST'])
 def create():
@@ -171,6 +175,65 @@ def create():
     else:
         return 'You are not logged in'
 
+@app.route('/fav/<string:id>', methods=['GET', "POST"])
+def fav(id):
+    if "email" in session:
+        user = session["email"]
+    data = posts_collection.find_one({"_id": ObjectId(id)})
+    data["person"]= user
+    print("visited")
+    if request.method=="POST":
+        favourite_table.insert_one(data)
+        return redirect("/")
+
+@app.route('/favPage', methods=['GET', "POST"])
+def favouritePage():
+    if "email" in session:
+        user = session["email"]
+    list1 = {}
+    posts = list(favourite_table.find({"person": user}))
+    print (posts)
+    return render_template("favourite.html", **locals())
+
+@app.route('/edit/<string:id>', methods=['GET', "POST"])
+def edit (id):
+    data = posts_collection.find_one({"_id": ObjectId(id)})
+    print(data)
+    if request.method == 'POST':
+        posts_collection.delete_one({"_id": ObjectId(id)})
+        title = request.form['title']
+        tags = request.form['tags'].split(',')
+        description = request.form['description']
+        referance = request.form['reference'].split('/n')
+        time=datetime.now()
+        file = request.files['image']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        post = {
+            'date_time':time,
+            'user':db_t['teachers'].find_one({'email':session['email']}),
+            'title': title,
+            'tags': tags,
+            'description': description,
+            'image_path': os.path.join(app.config['UPLOAD_FOLDER'], filename),
+            'referance':referance
+        }
+        temp_post=posts_collection.insert_one(post)
+        print(temp_post)
+        return redirect(url_for('homepage'))
+    return render_template("edit.html", **locals())
+
+@app.route('/delete/<string:id>', methods=['GET', "POST"])
+def delete (id):
+    data = posts_collection.find_one({"_id": ObjectId(id)})
+    if request.method == "POST":
+        posts_collection.delete_one({"_id": ObjectId(id)})
+        favourite_table.delete_one({"_id": ObjectId(id)})
+        return redirect('/')
+    return render_template("delete.html")
+
+
 @app.route('/search')
 def search():
     query = request.args.get('query')
@@ -183,18 +246,20 @@ def show_post(post_id):
     id=post_id
     post_id = ObjectId(post_id)
     post = posts_collection.find_one({'_id': post_id})
+
+    print (post)
     comments = list(comments_collection.find({'post_id': id}))
     print(comments)
-    return render_template('post.html', post=post, comments=comments)
+    return render_template('post.html', **locals())
 
 
 
-@app.route('/filter')
-def filter():
-    query = request.args.get('tag')
-    print(query)
-    posts = list(posts_collection.find({'title':{'$regex':query, '$options':'i'}}))
-    return render_template('filter_results.html', posts=posts)
+@app.route('/filter/<string:tag>')
+def filter(tag):
+    print(tag)
+    posts = list(posts_collection.find({'tags': tag}))
+    print(posts)
+    return render_template('filter_results.html', **locals())
 
 
 @app.route('/post/<post_id>', methods=['POST'])
